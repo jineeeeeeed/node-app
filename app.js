@@ -16,6 +16,10 @@ const style_css = fs.readFileSync('./style.css','UTF-8');
 
 var server = http.createServer(getFromCliant);
 
+server.listen(port, hostname, () => {
+	console.log(`Server running at http://${hostname}:${port}/`);
+});
+
 //-----------------------------------
 function getFromCliant (req,res){
 	var url_parts = url.parse(req.url,true);//true をつけるとパラメータもパースされて扱いやすい
@@ -67,14 +71,4 @@ function other_render(req,res){
 	res.end();
 }
 
-
-// function readHTML(data,res){
-// 	res.writeHead(200,{'Content-Type':'text/html'});
-// 	res.write(data);
-// 	res.end;
-// 	return;
-// }
-
-server.listen(port, hostname, () => {
-	console.log(`Server running at http://${hostname}:${port}/`);
-});
+//-----------------------------------
