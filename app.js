@@ -48,13 +48,13 @@ function indeX_render(req,res,url_parts){
 	var content = ejs.render(index_page,{
 		title:'タイトル'
 	});
-	content = content.replace('１ss１１','むっき');
+	content = content.replace('１ss１１','置換しました');
 	//パラメータを取得してcontentに追記
 	var query = url_parts.query;
 	if(query.apple != undefined){
-		content +='wee ' +query.apple;
+		content +='URLパラメタ（apple）： ' +query.apple;
 	}else {
-		content +='なし ' ;
+		content +='URLパラメタ：なし' ;
 	}
 	res.writeHead(200,{'Content-Type':'text/html'});
 	res.write(content);
@@ -62,7 +62,6 @@ function indeX_render(req,res,url_parts){
 }
 
 function other_render(req,res){
-	
 	//POST
 	if(req.method == 'POST'){
 		var body ='';
@@ -77,27 +76,21 @@ function other_render(req,res){
 			// パース後はキー（name）を指定すると値が取得できる
 			var apple = postdata.apple;
 			var content = ejs.render(other_page,{
-				title:'タイotherPOSTトル',
+				title:'POSTで遷移',
 				msg:'POST!'+apple
 			});
-
-			console.log(apple);
 			res.writeHead(200,{'Content-Type':'text/html'});
-			console.log(apple);
 			res.write(content);
-			console.log(apple);
 			res.end();
-
 		});
 
 	//GET
 	} else {
 		//既にロード済のページにレンだー
 		var content = ejs.render(other_page,{
-			title:'タイotherGETトル',
+			title:'GETで遷移',
 			msg:'GET!'
 		});
-			
 		res.writeHead(200,{'Content-Type':'text/html'});
 		res.write(content);
 		res.end();

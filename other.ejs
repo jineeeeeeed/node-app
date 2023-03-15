@@ -5,18 +5,20 @@
         <link type="text/css" rel="stylesheet" href="./style.css">
         <title><%=title %> タイトル</title>
     </head>
+    <form method="post" action="/" name="otherForme" >
     <body>
         <table border="1">
             <tbody>
                 <tr>
-                    <td>１ss１１</td>
-                    <td>２<%=title %> </td>
+                    <td>other</td>
+                    <td><%=title %> </td>
                 </tr>
                 <tr>
-                    <td>EJS</td>
-                    <td>あaa<%=msg %></td>
+                    <td> <a href="./?apple=123344">戻る</a> </td>
+                    <td><%=msg %></td>
                 </tr>
             </tbody>
         </table>
     </body>
+    </form>
 </html>

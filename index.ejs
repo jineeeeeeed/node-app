@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <SCRIPT language="javascript" type="text/javascript">
 function commit(){
-	document.forms['otherForme'].submit();
+	document.forms['indexForm'].submit();
 }
 </SCRIPT>
 <html lang="ja">
@@ -10,7 +10,7 @@ function commit(){
         <link type="text/css" rel="stylesheet" href="./style.css">
         <title><%=title %> タイトル</title>
     </head>
-    <form method="post" action="/other" name="otherForme" >
+    <form method="post" action="/other" name="indexForm" >
         <body>
             <table border="1">
                 <tbody>
@@ -20,11 +20,11 @@ function commit(){
                     </tr>
                     <tr>
                         <td><input type="text" name="apple"></td>
-                        <td> <a href="/other">あaa</a> </td>
+                        <td> <a href="/other">ただの画面遷移リンク</a> </td>
                     </tr>
                 </tbody>
             </table>
-            <input value="確定" type="submit">
+            <input value="FORM確定→POST" type="submit">
         </body>
     </form>
 </html>
