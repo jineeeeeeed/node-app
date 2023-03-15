@@ -1,8 +1,8 @@
 const http = require('http');
 const fs = require('fs');
-const ejs = require('ejs');
 const url = require('url');
 const querystring = require('querystring');
+const ejs = require('ejs');
 //------------------------------
 const hostname = 'localhost';
 const port = 3000;
@@ -49,6 +49,7 @@ function indeX_render(req,res,url_parts){
 		title:'タイトル'
 	});
 	content = content.replace('１ss１１','むっき');
+	//パラメータを取得してcontentに追記
 	var query = url_parts.query;
 	if(query.apple != undefined){
 		content +='wee ' +query.apple;
@@ -61,14 +62,46 @@ function indeX_render(req,res,url_parts){
 }
 
 function other_render(req,res){
-	//既にロード済のページにレンだー
-	var content = ejs.render(other_page,{
-		title:'タイotherトル'
-	});
-	content = content.replace('１ss１１','むっき');
-	res.writeHead(200,{'Content-Type':'text/html'});
-	res.write(content);
-	res.end();
+	
+	//POST
+	if(req.method == 'POST'){
+		var body ='';
+		//データ受信のイベント処理
+		req.on('data', function(chunk) {
+			body += chunk
+			console.log(body);
+		});
+		//データ受信終了のイベント処理
+		req.on('end', function() {
+			var postdata = querystring.parse(body);
+			// パース後はキー（name）を指定すると値が取得できる
+			var apple = postdata.apple;
+			var content = ejs.render(other_page,{
+				title:'タイotherPOSTトル',
+				msg:'POST!'+apple
+			});
+
+			console.log(apple);
+			res.writeHead(200,{'Content-Type':'text/html'});
+			console.log(apple);
+			res.write(content);
+			console.log(apple);
+			res.end();
+
+		});
+
+	//GET
+	} else {
+		//既にロード済のページにレンだー
+		var content = ejs.render(other_page,{
+			title:'タイotherGETトル',
+			msg:'GET!'
+		});
+			
+		res.writeHead(200,{'Content-Type':'text/html'});
+		res.write(content);
+		res.end();
+	}
 }
 
 //-----------------------------------
