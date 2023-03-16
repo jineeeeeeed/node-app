@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<SCRIPT language="javascript" type="text/javascript">
+function commit(){
+	document.forms['indexForm'].submit();
+}
+</SCRIPT>
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="./style.css">
+        <title><%=title %> タイトル</title>
+    </head>
+    <form method="post" action="/board" name="boardForm" >
+        <body>
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <td colspan="2" align="center">伝言です。<%=content %></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><%=data.msg %> </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="msg"></td>
+                        <td><input value="送信" type="submit"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <td >履歴：<%= cookie_data %> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/">戻る</a> 
+            
+        </body>
+    </form>
+</html>
